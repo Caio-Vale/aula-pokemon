@@ -54,6 +54,7 @@ type PokemonSprites = {
   }
   
   export type Pokemon = {
+    name: string
     sprites: PokemonSprites;
     stats: PokemonStat[];
     types: PokemonType[];

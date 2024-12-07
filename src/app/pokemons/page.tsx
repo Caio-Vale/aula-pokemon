@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useState } from "react"
+import { Pokemon } from "../@types/pokemon"
 
 export default function PokemonsPage() {
-  const [pokemons, setPokemons] = useState<pokemons[]>([])
+  const [pokemons, setPokemons] = useState<Pokemon[]>([])
 
   async function getPokemons() {
     for (let i = 1; i <= 10; i++) {
@@ -32,7 +33,13 @@ export default function PokemonsPage() {
 
   return (
     <>
-      {pokemons.map((pokemon) => (<p key={pokemon.name}>{pokemon.name}</p>))}
+      {pokemons.map((pokemon) => (
+        <div key={pokemon.name}>
+            <p>{pokemon.name}</p>
+            <img src={pokemon.sprites.other?.showdown?.front_shiny ?? ''} alt="" />
+            {pokemon.types.map((item) => <p key={item.type.name}>{item.type.name}</p> )}
+        </div>
+        ))}
     </>
   )
 }
